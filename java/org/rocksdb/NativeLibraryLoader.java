@@ -29,7 +29,7 @@ public class NativeLibraryLoader {
     byte[] buffer = new byte[102400];
     int readBytes;
 
-    InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream(sharedLibraryName);
+    InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(sharedLibraryName);
     if (is == null) {
       throw new RuntimeException(sharedLibraryName + " was not found inside JAR.");
     }
